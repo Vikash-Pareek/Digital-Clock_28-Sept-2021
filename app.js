@@ -9,13 +9,11 @@ setInterval(() => {
 
         let greetingText = document.querySelector(".greet");
 
-        if(hours <= 12) {
-            greetingText.innerHTML = "Good Morning!";
-        } else if(hours > 12 && hours < 18) {
-            greetingText.innerHTML = "Good Afternoon!";
-        } else {
+        {
+            (hours <= 12) ? greetingText.innerHTML = "Good Morning!" :
+            (hours > 12 && hours < 18) ? greetingText.innerHTML = "Good Afternoon!" :
             greetingText.innerHTML = "Good Night!";
-        }
+        };
 
         // Changing default 24-Hour to 12-Hour along with AM & PM
         if(hours > 12) {
@@ -24,19 +22,11 @@ setInterval(() => {
         }
 
         // Concatenating 0 to time whenever less than 10
-        if(hours < 10) {
-            hours = "0" + hours;
-        }
-    
-        if(minutes < 10) {
-            minutes = "0" + minutes;
-        }
-    
-        if(seconds < 10) {
-            seconds = "0" + seconds;
-        }
+        (hours < 10) ? hours = `0${hours}` : hours;
+        (minutes < 10) ? minutes = `0${minutes}` : minutes;
+        (seconds < 10) ? seconds = `0${seconds}` : seconds;
 
-        return document.querySelector(".time").innerHTML = hours + ":" + minutes + ":" + seconds;
+        return document.querySelector(".time").innerHTML = `${hours}:${minutes}:${seconds}`;
     }
 
     time();
@@ -48,14 +38,12 @@ setInterval(() => {
     
         let day = dateTimeNow.getDate();
         let month = monthNames[dateTimeNow.getMonth()];
-        let year = dateTimeNow.getUTCFullYear();
+        let year = dateTimeNow.getFullYear();
     
         // Concatenating 0 to date whenever less than 10
-        if(day < 10) {
-            day = "0" + day;
-        }
+        (day < 10) ? day = "0" + day : day;
     
-        return document.querySelector(".date").innerHTML = day + " " + month + " " + year;
+        return document.querySelector(".date").innerHTML = `${day} ${month} ${year}`;
     }
 
     date();
